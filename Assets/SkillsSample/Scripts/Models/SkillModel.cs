@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace SkillsSample.Scripts.Models
 {
     [System.Serializable]
@@ -6,16 +8,26 @@ namespace SkillsSample.Scripts.Models
         public int SkillID { get; private set; }
         public string SkillName { get; private set; }
         public int Cost { get; private set; }
+        public List<int> PrerequisiteSkills { get; private set; }
         public bool IsLearned { get; private set; }
-        public int[] ConnectedSkills { get; private set; }
 
-        public SkillModel(int id, string name, int cost, int[] connectedSkills)
+        public SkillModel(int skillID, string skillName, int cost, List<int> prerequisites)
         {
-            SkillID = id;
-            SkillName = name;
-            this.Cost = cost;
+            SkillID = skillID;
+            SkillName = skillName;
+            Cost = cost;
+            PrerequisiteSkills = prerequisites;
             IsLearned = false;
-            this.ConnectedSkills = connectedSkills;
+        }
+
+        public void LearnSkill()
+        {
+            IsLearned = true;
+        }
+
+        public void ForgetSkill()
+        {
+            IsLearned = false;
         }
     }
 }
