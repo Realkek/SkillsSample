@@ -1,23 +1,24 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SkillsSample.Scripts.Models
 {
-    [System.Serializable]
     public class SkillModel
     {
         public int SkillID { get; private set; }
         public string SkillName { get; private set; }
         public int Cost { get; private set; }
-        public List<int> PrerequisiteSkills { get; private set; }
+        public List<SkillModel> PrerequisiteSkills { get; private set; }
         public bool IsLearned { get; private set; }
-
-        public SkillModel(int skillID, string skillName, int cost, List<int> prerequisites)
+        
+        public bool CheckLearnConditionsMet(int availableSkillPoints)
         {
-            SkillID = skillID;
-            SkillName = skillName;
-            Cost = cost;
-            PrerequisiteSkills = prerequisites;
-            IsLearned = false;
+            return !IsLearned && availableSkillPoints >= Cost && ArePrerequisitesLearned();
+        }
+
+        private bool ArePrerequisitesLearned()
+        {
+            return PrerequisiteSkills.All(prerequisiteSkill => prerequisiteSkill.IsLearned);
         }
 
         public void LearnSkill()

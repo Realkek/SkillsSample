@@ -1,36 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using SkillsSample.Scripts.Models;
 using SkillsSample.Scripts.Views;
 using UnityEngine;
 
-public class SkillPresenter
+namespace SkillsSample.Scripts.Presenters
 {
-    private SkillModel model;
-    private SkillView view;
-
-    public SkillPresenter(SkillModel model, SkillView view)
+    public class SkillPresenter
     {
-        this.model = model;
-        this.view = view;
+        private readonly SkillModel _model;
+        private PlayerModel _playerModel;
+        private readonly SkillCellView _cellView;
 
-        // Подписываемся на события кнопок и обрабатываем их
-        view.LearnButtonClicked += OnLearnButtonClicked;
-        view.ForgetButtonClicked += OnForgetButtonClicked;
-    }
-
-    private void OnLearnButtonClicked()
-    {
-        /*if (model.CanBeLearned())
+        public SkillPresenter(SkillModel model, SkillCellView cellView)
         {
-            model.LearnSkill();
-            view.UpdateSkillUI();
-        }*/
-    }
+            _model = model;
+            _cellView = cellView;
 
-    private void OnForgetButtonClicked()
-    {
-        model.ForgetSkill();
-       // view.UpdateSkillUI();
+            cellView.LearnButtonClicked += OnLearnButtonClicked;
+            cellView.ForgetButtonClicked += OnForgetButtonClicked;
+        }
+
+        private void OnLearnButtonClicked()
+        {
+            if (!_model.CheckLearnConditionsMet(_playerModel.Points)) return;
+            _model.LearnSkill();
+            _cellView.UpdateSkillUI(_model.SkillName, _model.Cost, _model.IsLearned);
+        }
+
+        private void OnForgetButtonClicked()
+        {
+            _model.ForgetSkill();
+            _cellView.UpdateSkillUI(_model.SkillName, _model.Cost, _model.IsLearned);
+        }
     }
 }

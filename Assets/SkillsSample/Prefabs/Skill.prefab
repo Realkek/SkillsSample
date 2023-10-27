@@ -664,7 +664,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 055c411586f43d4408929fb016cfa707, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillNameText: {fileID: 2008585880209123429}
-  skillCost: {fileID: 3447082523719269410}
+  _name: {fileID: 2008585880209123429}
+  _cost: {fileID: 3447082523719269410}
+  _image: {fileID: 7869662879396253904}
   learnButton: {fileID: 8314469962184872228}
   forgetButton: {fileID: 5468417871234194447}

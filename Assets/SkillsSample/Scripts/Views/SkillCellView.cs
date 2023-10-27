@@ -1,15 +1,21 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace SkillsSample.Scripts.Views
 {
-    public class SkillView : MonoBehaviour
+    public class SkillCellView : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI skillNameText;
-        [SerializeField] private TextMeshProUGUI skillCost;
+        [SerializeField] private int _id;
+        [SerializeField] private TextMeshProUGUI _name;
+        [SerializeField] private TextMeshProUGUI _cost;
+        [SerializeField] private Image _image;
+
+        private const string CostPrefix = "Cost: ";
+
+        public int Id => _id;
+        
         public Button learnButton;
         public Button forgetButton;
 
@@ -24,10 +30,12 @@ namespace SkillsSample.Scripts.Views
 
         public void UpdateSkillUI(string skillName, int skillCost, bool isLearned)
         {
-            this.skillCost.text = "Cost: " + skillCost;
+            _name.text = skillName;
 
-            learnButton.interactable = !isLearned; // Если скилл уже изучен, кнопка "Изучить" неактивна
-            forgetButton.interactable = isLearned; // Если скилл не изучен, кнопка "Забыть" неактивна
+            _cost.text = CostPrefix + skillCost;
+            learnButton.interactable = !isLearned;
+            forgetButton.interactable = isLearned;
+            _image.color = isLearned ? Color.green : Color.blue;
         }
     }
 }

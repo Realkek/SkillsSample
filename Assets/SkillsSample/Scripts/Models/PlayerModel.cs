@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace SkillsSample.Scripts.Models
 {
-    public class PlayerModel
+    public abstract class PlayerModel
     {
         public int Points { get; private set; }
         public List<SkillModel> Skills { get; private set; }
