@@ -8,26 +8,34 @@ namespace SkillsSample.Scripts.Models
         public int Id { get; set; }
 
         private const int NoCostNumber = 0;
-        private readonly Dictionary<int, ISkillModel> _skills;
-        private readonly Dictionary<int, List<ISkillModel>> _requiredSkills;
+        private readonly Dictionary<int, ISkillModel> _skills = new();
 
-        public void AddSkill(int skillId, string skillName, List<int> requiredSkills, int cost)
+        public void AddSkill(ISkillModel skillModel)
         {
-            _skills.Add(skillId, new SkillModel(skillId, skillName, cost));
+            _skills.Add(skillModel.Id, skillModel);
         }
 
-        private bool CheckPossibilityOfLearning(int id, ICollection<ISkillModel> learnedSkills)
+        public static bool CheckPossibilityOfLearning(ISkillModel skillModel, IEnumerable<ISkillModel> learnedSkills)
         {
-            _requiredSkills.TryGetValue(id, out var requiredSkills);
-            return requiredSkills != null && requiredSkills.Any(learnedSkills.Contains);
+            foreach (var learnedSkill in learnedSkills)
+                return (skillModel != null && skillModel.RequiredSkillsNumbers.Contains(learnedSkill.Id));
+            
+            return true;
         }
 
         private bool CheckPossibilityOfForgetting(int id, IEnumerable<ISkillModel> learnedSkills)
         {
-            return learnedSkills.Select(learnedSkill =>
-                    learnedSkill.Id != id & _requiredSkills.Any(requiredSkills =>
+            /*return learnedSkills.Select(learnedSkill =>
+                    learnedSkill.Id != id & _requiredSkillsNumbers.Any(requiredSkills =>
                         requiredSkills.Value.Contains(learnedSkill)))
-                .FirstOrDefault();
+                .FirstOrDefault();*/
+            return false;
+        }
+
+        public ISkillModel GetSkillModel(int id)
+        {
+            _skills.TryGetValue(id, out var skillModel);
+            return skillModel;
         }
     }
 }

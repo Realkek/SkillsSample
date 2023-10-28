@@ -9,7 +9,6 @@ namespace SkillsSample.Scripts.Data.ScriptableObjects
     {
         [SerializeField] private List<SkillStaticData> _skillsStaticData;
         [SerializeField] private int _skillBaseId;
-       
         
         public List<SkillStaticData> SkillStaticData => _skillsStaticData;
         public int SkillBaseId => _skillBaseId;

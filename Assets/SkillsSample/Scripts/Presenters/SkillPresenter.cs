@@ -1,6 +1,7 @@
 using SkillsSample.Scripts.Data.ScriptableObjects;
 using SkillsSample.Scripts.Models;
 using SkillsSample.Scripts.Views;
+using Unity.VisualScripting;
 
 namespace SkillsSample.Scripts.Presenters
 {
@@ -12,19 +13,21 @@ namespace SkillsSample.Scripts.Presenters
         private readonly SkillCellView _cellView;
 
         public SkillPresenter(SkillsSchemeModel skillsSchemeModel, SkillCellView cellView,
-            SkillStaticData skillStaticData)
+            SkillStaticData skillStaticData, PlayerModel playerModel)
         {
             _skillsSchemeModel = skillsSchemeModel;
             _cellView = cellView;
             _skillStaticData = skillStaticData;
-
+            _playerModel = playerModel;
+            CreateSkill();
             Subscribe();
         }
 
-        private void FillSkill()
+        private void CreateSkill()
         {
-            _skillsSchemeModel.AddSkill(_skillStaticData.CellId, _skillStaticData.SkillName,
-                _skillStaticData.RequiredSkillsNumbers, _skillStaticData.Cost);
+            var skill = new SkillModel(_skillStaticData.CellId, _skillStaticData.SkillName, _skillStaticData.Cost,
+                _skillStaticData.RequiredSkillsNumbers);
+            _skillsSchemeModel.AddSkill(skill);
         }
 
         private void Subscribe()
@@ -41,9 +44,12 @@ namespace SkillsSample.Scripts.Presenters
 
         private void OnLearnButtonClicked()
         {
-            /*if (!_skillModel.CheckLearnConditionsMet(_playerModel.Points)) return;
-            _skillModel.LearnSkill();
-            _cellView.UpdateSkillUI(_skillModel.SkillName, _skillModel.Cost, _skillModel.IsLearned);*/
+            var skill = _skillsSchemeModel.GetSkillModel(_skillStaticData.CellId);
+            if (SkillsSchemeModel.CheckPossibilityOfLearning(skill, _playerModel.GetLearnedSkills()))
+            {
+                _playerModel.LearnSkill(skill);
+                // _cellView.UpdateSkillUI(_skillModel.SkillName, _skillModel.Cost, _skillModel.IsLearned);
+            }
         }
 
         private void OnForgetButtonClicked()

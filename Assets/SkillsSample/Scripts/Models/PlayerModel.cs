@@ -5,14 +5,16 @@ namespace SkillsSample.Scripts.Models
     public class PlayerModel : IBaseModel
     {
         public int Id { get; set; }
-        private int _points { get; set; }
 
-        private readonly List<ISkillModel> _learnedSkills;
-        private int _skillBaseId { get; set; }
+        private int _points;
+        private int _skillBaseId;
 
-        public PlayerModel(int startingPoints)
+        private readonly List<ISkillModel> _learnedSkills = new();
+
+        public PlayerModel(int startingPoints, int skillBaseId)
         {
             _points = startingPoints;
+            _skillBaseId = skillBaseId;
         }
 
         public bool LearnSkill(ISkillModel skill)
@@ -27,6 +29,11 @@ namespace SkillsSample.Scripts.Models
         {
             _points += skill.Cost;
             _learnedSkills.Remove(skill);
+        }
+
+        public IEnumerable<ISkillModel> GetLearnedSkills()
+        {
+            return _learnedSkills;
         }
     }
 }
