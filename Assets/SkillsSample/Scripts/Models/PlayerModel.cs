@@ -4,13 +4,19 @@ namespace SkillsSample.Scripts.Models
 {
     public abstract class PlayerModel
     {
-        public int Points { get; private set; }
-        public List<SkillModel> Skills { get; private set; }
+        private readonly List<int> _learnedSkillsNumbers;
 
-        public PlayerModel(int startingPoints, List<SkillModel> startingSkills)
+        public int Points { get; private set; }
+
+        public PlayerModel(int startingPoints, List<int> baseLearnedSkillsNumbers)
         {
             Points = startingPoints;
-            Skills = startingSkills;
+            _learnedSkillsNumbers = baseLearnedSkillsNumbers;
+        }
+
+        public void AddLearnedSkillNumber(int skillNumber)
+        {
+            _learnedSkillsNumbers.Add(skillNumber);
         }
     }
 }
