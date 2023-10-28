@@ -2,21 +2,31 @@ using System.Collections.Generic;
 
 namespace SkillsSample.Scripts.Models
 {
-    public abstract class PlayerModel
+    public class PlayerModel : IBaseModel
     {
-        private readonly List<int> _learnedSkillsNumbers;
+        public int Id { get; set; }
+        private int _points { get; set; }
 
-        public int Points { get; private set; }
+        private readonly List<ISkillModel> _learnedSkills;
+        private int _skillBaseId { get; set; }
 
-        public PlayerModel(int startingPoints, List<int> baseLearnedSkillsNumbers)
+        public PlayerModel(int startingPoints)
         {
-            Points = startingPoints;
-            _learnedSkillsNumbers = baseLearnedSkillsNumbers;
+            _points = startingPoints;
         }
 
-        public void AddLearnedSkillNumber(int skillNumber)
+        public bool LearnSkill(ISkillModel skill)
         {
-            _learnedSkillsNumbers.Add(skillNumber);
+            if (_points < skill.Cost)
+                return false;
+            _learnedSkills.Add(skill);
+            return true;
+        }
+
+        public void ForgetSkill(ISkillModel skill)
+        {
+            _points += skill.Cost;
+            _learnedSkills.Remove(skill);
         }
     }
 }

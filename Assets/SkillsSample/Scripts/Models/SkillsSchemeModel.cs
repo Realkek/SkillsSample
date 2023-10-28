@@ -3,23 +3,31 @@ using System.Linq;
 
 namespace SkillsSample.Scripts.Models
 {
-    public class SkillsSchemeModel
+    public class SkillsSchemeModel : IBaseModel
     {
-        private readonly Dictionary<int, string> _names;
-        private readonly Dictionary<int, List<int>> _requiredNumbers;
-        private readonly Dictionary<int, int> _costs;
+        public int Id { get; set; }
+
+        private const int NoCostNumber = 0;
+        private readonly Dictionary<int, ISkillModel> _skills;
+        private readonly Dictionary<int, List<ISkillModel>> _requiredSkills;
 
         public void AddSkill(int skillId, string skillName, List<int> requiredSkills, int cost)
         {
-            _names.Add(skillId, skillName);
-            _requiredNumbers.Add(skillId, requiredSkills);
-            _costs.Add(skillId, cost);
+            _skills.Add(skillId, new SkillModel(skillId, skillName, cost));
         }
 
-        public bool CheckPossibilityOfLearning(int id, List<int> learnedSkillsNumbers)
+        private bool CheckPossibilityOfLearning(int id, ICollection<ISkillModel> learnedSkills)
         {
-            _requiredNumbers.TryGetValue(id, out var requiredNumbers);
-            return requiredNumbers != null && requiredNumbers.Any(learnedSkillsNumbers.Contains);
+            _requiredSkills.TryGetValue(id, out var requiredSkills);
+            return requiredSkills != null && requiredSkills.Any(learnedSkills.Contains);
+        }
+
+        private bool CheckPossibilityOfForgetting(int id, IEnumerable<ISkillModel> learnedSkills)
+        {
+            return learnedSkills.Select(learnedSkill =>
+                    learnedSkill.Id != id & _requiredSkills.Any(requiredSkills =>
+                        requiredSkills.Value.Contains(learnedSkill)))
+                .FirstOrDefault();
         }
     }
 }

@@ -41,15 +41,15 @@ namespace SkillsSample.Scripts.Presenters
 
         private void OnLearnButtonClicked()
         {
-            if (!_skillModel.CheckLearnConditionsMet(_playerModel.Points)) return;
+            /*if (!_skillModel.CheckLearnConditionsMet(_playerModel.Points)) return;
             _skillModel.LearnSkill();
-            _cellView.UpdateSkillUI(_skillModel.SkillName, _skillModel.Cost, _skillModel.IsLearned);
+            _cellView.UpdateSkillUI(_skillModel.SkillName, _skillModel.Cost, _skillModel.IsLearned);*/
         }
 
         private void OnForgetButtonClicked()
         {
-            _skillModel.ForgetSkill();
-            _cellView.UpdateSkillUI(_skillModel.SkillName, _skillModel.Cost, _skillModel.IsLearned);
+            /*_skillModel.ForgetSkill();
+            _cellView.UpdateSkillUI(_skillModel.SkillName, _skillModel.Cost, _skillModel.IsLearned);*/
         }
     }
 }

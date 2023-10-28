@@ -11,11 +11,13 @@ namespace SkillsSample.Scripts
     public class SkillScreenBootstrapper : MonoBehaviour
     {
         [SerializeField] private SkillsSchemeStaticData _skillsSchemeStaticData;
+        [SerializeField] private PlayerStaticData _playerStaticData;
         [SerializeField] private List<SkillCellView> _skillViews;
 
         private void Awake()
         {
             var skillsModel = new SkillsSchemeModel();
+            var playerModel = new PlayerModel(_playerStaticData.PointsNumber);
             foreach (var skillView in _skillViews)
             {
                 var skillStaticData = _skillsSchemeStaticData.GetSkillStaticDataById(skillView.Id);
