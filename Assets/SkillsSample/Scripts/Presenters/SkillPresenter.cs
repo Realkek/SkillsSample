@@ -1,35 +1,55 @@
+using SkillsSample.Scripts.Data.ScriptableObjects;
 using SkillsSample.Scripts.Models;
 using SkillsSample.Scripts.Views;
-using UnityEngine;
 
 namespace SkillsSample.Scripts.Presenters
 {
     public class SkillPresenter
     {
-        private readonly SkillModel _model;
+        private readonly SkillsSchemeModel _skillsSchemeModel;
+        private readonly SkillStaticData _skillStaticData;
         private PlayerModel _playerModel;
         private readonly SkillCellView _cellView;
 
-        public SkillPresenter(SkillModel model, SkillCellView cellView)
+        public SkillPresenter(SkillsSchemeModel skillsSchemeModel, SkillCellView cellView,
+            SkillStaticData skillStaticData)
         {
-            _model = model;
+            _skillsSchemeModel = skillsSchemeModel;
             _cellView = cellView;
+            _skillStaticData = skillStaticData;
 
-            cellView.LearnButtonClicked += OnLearnButtonClicked;
-            cellView.ForgetButtonClicked += OnForgetButtonClicked;
+            Subscribe();
+        }
+
+        private void FillSkill()
+        {
+            _skillsSchemeModel.AddSkill(_skillStaticData.CellId, _skillStaticData.SkillName,
+                _skillStaticData.RequiredSkillsNumbers, _skillStaticData.Cost);
+        }
+
+        private void Subscribe()
+        {
+            _cellView.LearnButtonClicked += OnLearnButtonClicked;
+            _cellView.ForgetButtonClicked += OnForgetButtonClicked;
+        }
+
+        private void Unsubscribe()
+        {
+            _cellView.LearnButtonClicked -= OnLearnButtonClicked;
+            _cellView.ForgetButtonClicked -= OnForgetButtonClicked;
         }
 
         private void OnLearnButtonClicked()
         {
-            if (!_model.CheckLearnConditionsMet(_playerModel.Points)) return;
-            _model.LearnSkill();
-            _cellView.UpdateSkillUI(_model.SkillName, _model.Cost, _model.IsLearned);
+            if (!_skillModel.CheckLearnConditionsMet(_playerModel.Points)) return;
+            _skillModel.LearnSkill();
+            _cellView.UpdateSkillUI(_skillModel.SkillName, _skillModel.Cost, _skillModel.IsLearned);
         }
 
         private void OnForgetButtonClicked()
         {
-            _model.ForgetSkill();
-            _cellView.UpdateSkillUI(_model.SkillName, _model.Cost, _model.IsLearned);
+            _skillModel.ForgetSkill();
+            _cellView.UpdateSkillUI(_skillModel.SkillName, _skillModel.Cost, _skillModel.IsLearned);
         }
     }
 }
