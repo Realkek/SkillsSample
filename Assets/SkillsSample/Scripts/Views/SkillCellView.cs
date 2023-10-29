@@ -15,7 +15,7 @@ namespace SkillsSample.Scripts.Views
         private const string CostPrefix = "Cost: ";
 
         public int Id => _id;
-        
+
         public Button learnButton;
         public Button forgetButton;
 
@@ -31,10 +31,9 @@ namespace SkillsSample.Scripts.Views
         public void UpdateSkillUI(string skillName, int skillCost, bool isLearned)
         {
             _name.text = skillName;
-
             _cost.text = CostPrefix + skillCost;
             learnButton.interactable = !isLearned;
-            forgetButton.interactable = isLearned;
+            forgetButton.gameObject.SetActive(isLearned);
             _image.color = isLearned ? Color.green : Color.blue;
         }
     }

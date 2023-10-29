@@ -19,17 +19,14 @@ namespace SkillsSample.Scripts.Models
         {
             foreach (var learnedSkill in learnedSkills)
                 return (skillModel != null && skillModel.RequiredSkillsNumbers.Contains(learnedSkill.Id));
-            
+
             return true;
         }
 
-        private bool CheckPossibilityOfForgetting(int id, IEnumerable<ISkillModel> learnedSkills)
+        public bool CheckPossibilityOfForgetting(IBaseModel skillModel, IEnumerable<ISkillModel> learnedSkills)
         {
-            /*return learnedSkills.Select(learnedSkill =>
-                    learnedSkill.Id != id & _requiredSkillsNumbers.Any(requiredSkills =>
-                        requiredSkills.Value.Contains(learnedSkill)))
-                .FirstOrDefault();*/
-            return false;
+            return !learnedSkills.Where(learnedSkill => learnedSkill.Id != skillModel.Id).Any(learnedSkill =>
+                learnedSkill.RequiredSkillsNumbers.Contains(skillModel.Id));
         }
 
         public ISkillModel GetSkillModel(int id)
