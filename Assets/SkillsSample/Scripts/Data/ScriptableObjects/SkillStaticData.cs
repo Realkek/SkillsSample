@@ -14,5 +14,6 @@ namespace SkillsSample.Scripts.Data.ScriptableObjects
         public string SkillName => _skillName;
         public int Cost => _cost;
         public List<int> RequiredSkillsNumbers => _requiredSkillsNumbers;
+        
     }
 }

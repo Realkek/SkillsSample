@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: PlayerStaticData
   m_EditorClassIdentifier: 
   _pointsNumber: 100
+  _skillBaseId: 2

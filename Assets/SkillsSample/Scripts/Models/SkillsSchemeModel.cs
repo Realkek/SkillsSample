@@ -15,12 +15,10 @@ namespace SkillsSample.Scripts.Models
             _skills.Add(skillModel.Id, skillModel);
         }
 
-        public static bool CheckPossibilityOfLearning(ISkillModel skillModel, IEnumerable<ISkillModel> learnedSkills)
+        public static bool CheckPossibilityOfLearning(ISkillModel skillModel, ICollection<ISkillModel> learnedSkills)
         {
-            foreach (var learnedSkill in learnedSkills)
-                return (skillModel != null && skillModel.RequiredSkillsNumbers.Contains(learnedSkill.Id));
-
-            return true;
+            return skillModel.RequiredSkillsNumbers.Any(requiredNumber =>
+                learnedSkills.Any(ls => ls.Id == requiredNumber));
         }
 
         public bool CheckPossibilityOfForgetting(IBaseModel skillModel, IEnumerable<ISkillModel> learnedSkills)

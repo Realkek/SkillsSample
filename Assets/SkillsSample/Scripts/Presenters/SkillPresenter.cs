@@ -1,7 +1,7 @@
+using System.Linq;
 using SkillsSample.Scripts.Data.ScriptableObjects;
 using SkillsSample.Scripts.Models;
 using SkillsSample.Scripts.Views;
-using Unity.VisualScripting;
 
 namespace SkillsSample.Scripts.Presenters
 {
@@ -9,9 +9,11 @@ namespace SkillsSample.Scripts.Presenters
     {
         private readonly SkillsSchemeModel _skillsSchemeModel;
         private readonly SkillStaticData _skillStaticData;
-        private PlayerModel _playerModel;
+        private readonly PlayerModel _playerModel;
         private readonly SkillCellView _cellView;
         private ISkillModel _skill;
+        private bool _isLearned;
+        private bool _isBaseSkill;
 
         public SkillPresenter(SkillsSchemeModel skillsSchemeModel, SkillCellView cellView,
             SkillStaticData skillStaticData, PlayerModel playerModel)
@@ -21,7 +23,8 @@ namespace SkillsSample.Scripts.Presenters
             _skillStaticData = skillStaticData;
             _playerModel = playerModel;
             CreateSkillModel();
-            _cellView.UpdateSkillUI(_skillStaticData.SkillName, _skillStaticData.Cost, false);
+            ChooseBaseSkill();
+            UpdateUi();
             Subscribe();
         }
 
@@ -30,6 +33,16 @@ namespace SkillsSample.Scripts.Presenters
             _skill = new SkillModel(_skillStaticData.CellId, _skillStaticData.SkillName, _skillStaticData.Cost,
                 _skillStaticData.RequiredSkillsNumbers);
             _skillsSchemeModel.AddSkill(_skill);
+        }
+
+        private void ChooseBaseSkill()
+        {
+            if (_playerModel.SkillBaseId == _skillStaticData.CellId)
+            {
+                _playerModel.LearnSkill(_skill);
+                _isLearned = true;
+                _isBaseSkill = true;
+            }
         }
 
         private void Subscribe()
@@ -46,10 +59,13 @@ namespace SkillsSample.Scripts.Presenters
 
         private void OnLearnButtonClicked()
         {
-            if (SkillsSchemeModel.CheckPossibilityOfLearning(_skill, _playerModel.GetLearnedSkills()))
+            if (SkillsSchemeModel.CheckPossibilityOfLearning(_skill, _playerModel.GetLearnedSkills().ToList()))
             {
                 if (_playerModel.LearnSkill(_skill))
-                    _cellView.UpdateSkillUI(_skillStaticData.SkillName, _skillStaticData.Cost, true);
+                {
+                    _isLearned = true;
+                    UpdateUi();
+                }
             }
         }
 
@@ -58,8 +74,13 @@ namespace SkillsSample.Scripts.Presenters
             if (_skillsSchemeModel.CheckPossibilityOfForgetting(_skill, _playerModel.GetLearnedSkills()))
             {
                 _playerModel.ForgetSkill(_skill);
-                _cellView.UpdateSkillUI(_skill.Name, _skill.Cost, false);
+                UpdateUi();
             }
+        }
+
+        private void UpdateUi()
+        {
+            _cellView.UpdateSkillUI(_skillStaticData.SkillName, _skillStaticData.Cost, _isLearned, _isBaseSkill);
         }
     }
 }

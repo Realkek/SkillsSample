@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: def8aa624ef12f9439662665cc3d901d, type: 3}
   m_Name: SkillStaticData 9
   m_EditorClassIdentifier: 
-  _cellId: 8
-  _skillName: awa
-  _cost: 1
-  _requiredSkillsNumbers: 
+  _cellId: 9
+  _skillName: Skill9
+  _cost: 5
+  _requiredSkillsNumbers: 080000000a000000

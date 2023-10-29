@@ -28,12 +28,16 @@ namespace SkillsSample.Scripts.Views
             forgetButton.onClick.AddListener(() => ForgetButtonClicked?.Invoke());
         }
 
-        public void UpdateSkillUI(string skillName, int skillCost, bool isLearned)
+        public void UpdateSkillUI(string skillName, int skillCost, bool isLearned, bool isBaseSkill)
         {
             _name.text = skillName;
-            _cost.text = CostPrefix + skillCost;
+            if (!isBaseSkill)
+            {
+                _cost.text = CostPrefix + skillCost;
+                forgetButton.gameObject.SetActive(isLearned);
+            }
+
             learnButton.interactable = !isLearned;
-            forgetButton.gameObject.SetActive(isLearned);
             _image.color = isLearned ? Color.green : Color.blue;
         }
     }

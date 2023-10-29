@@ -4,17 +4,17 @@ namespace SkillsSample.Scripts.Models
 {
     public class PlayerModel : IBaseModel
     {
-        public int Id { get; set; }
-
         private int _points;
-        private int _skillBaseId;
 
         private readonly List<ISkillModel> _learnedSkills = new();
+
+        public int Id { get; set; }
+        public int SkillBaseId { get; set; }
 
         public PlayerModel(int startingPoints, int skillBaseId)
         {
             _points = startingPoints;
-            _skillBaseId = skillBaseId;
+            SkillBaseId = skillBaseId;
         }
 
         public bool LearnSkill(ISkillModel skill)

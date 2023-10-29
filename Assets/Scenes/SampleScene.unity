@@ -132,11 +132,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2072595756351100765, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: _id
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6786432134150415812, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_Name
-      value: Skill (2)
+      value: Skill3
       objectReference: {fileID: 0}
     - target: {fileID: 7648983299059486600, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_Pivot.x
@@ -253,11 +253,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2072595756351100765, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: _id
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6786432134150415812, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_Name
-      value: Skill (6)
+      value: Skill7
       objectReference: {fileID: 0}
     - target: {fileID: 7648983299059486600, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_Pivot.x
@@ -477,11 +477,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2072595756351100765, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: _id
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6786432134150415812, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_Name
-      value: Skill (8)
+      value: Skill9
       objectReference: {fileID: 0}
     - target: {fileID: 7648983299059486600, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_Pivot.x
@@ -598,11 +598,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2072595756351100765, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: _id
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6786432134150415812, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_Name
-      value: Skill (7)
+      value: Skill8
       objectReference: {fileID: 0}
     - target: {fileID: 7648983299059486600, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_Pivot.x
@@ -902,11 +902,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2072595756351100765, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: _id
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6786432134150415812, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_Name
-      value: Skill (4)
+      value: Skill5
       objectReference: {fileID: 0}
     - target: {fileID: 7648983299059486600, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_Pivot.x
@@ -974,11 +974,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7648983299059486600, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 162
+      value: 171.3
       objectReference: {fileID: 0}
     - target: {fileID: 7648983299059486600, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 43
+      value: 60.8
       objectReference: {fileID: 0}
     - target: {fileID: 7648983299059486600, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1137,11 +1137,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2072595756351100765, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: _id
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6786432134150415812, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_Name
-      value: Skill (10)
+      value: Skill11
       objectReference: {fileID: 0}
     - target: {fileID: 7648983299059486600, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_Pivot.x
@@ -1258,11 +1258,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2072595756351100765, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: _id
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6786432134150415812, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_Name
-      value: Skill (5)
+      value: Skill6
       objectReference: {fileID: 0}
     - target: {fileID: 7648983299059486600, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_Pivot.x
@@ -1379,11 +1379,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2072595756351100765, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: _id
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6786432134150415812, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_Name
-      value: Skill (3)
+      value: Skill4
       objectReference: {fileID: 0}
     - target: {fileID: 7648983299059486600, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_Pivot.x
@@ -1451,7 +1451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7648983299059486600, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 81
+      value: 236.7
       objectReference: {fileID: 0}
     - target: {fileID: 7648983299059486600, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1653,11 +1653,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2072595756351100765, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: _id
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6786432134150415812, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_Name
-      value: Skill (9)
+      value: Skill10
       objectReference: {fileID: 0}
     - target: {fileID: 7648983299059486600, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_Pivot.x
@@ -1907,6 +1907,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 982939744}
     m_Modifications:
+    - target: {fileID: 2072595756351100765, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
+      propertyPath: _id
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3447082523719269410, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_text
       value: "\u0411\u0430\u0437\u0430\n"
@@ -1917,7 +1921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6786432134150415812, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_Name
-      value: BaseSkill
+      value: Skill2
       objectReference: {fileID: 0}
     - target: {fileID: 7648983299059486600, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_Pivot.x
@@ -2177,7 +2181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6786432134150415812, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_Name
-      value: Skill
+      value: Skill1
       objectReference: {fileID: 0}
     - target: {fileID: 7648983299059486600, guid: d98176d5aaf6ee8418157206f36de6b1, type: 3}
       propertyPath: m_Pivot.x
