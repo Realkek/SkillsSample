@@ -31,7 +31,7 @@ namespace SkillsSample.Scripts.Models
             _learnedSkills.Remove(skill);
         }
 
-        public IEnumerable<ISkillModel> GetLearnedSkills()
+        public ICollection<ISkillModel> GetLearnedSkills()
         {
             return _learnedSkills;
         }

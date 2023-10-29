@@ -21,10 +21,20 @@ namespace SkillsSample.Scripts.Models
                 learnedSkills.Any(ls => ls.Id == requiredNumber));
         }
 
-        public bool CheckPossibilityOfForgetting(IBaseModel skillModel, IEnumerable<ISkillModel> learnedSkills)
+
+        public static bool CheckPossibilityOfForgetting(ISkillModel skillModel, ICollection<ISkillModel> learnedSkills)
         {
-            return !learnedSkills.Where(learnedSkill => learnedSkill.Id != skillModel.Id).Any(learnedSkill =>
+            var dependentSkills = learnedSkills.Where(learnedSkill =>
                 learnedSkill.RequiredSkillsNumbers.Contains(skillModel.Id));
+
+            return dependentSkills.All(dependentSkill =>
+            {
+                var alternateLearnedSkills = dependentSkill.RequiredSkillsNumbers
+                    .Except(new[] {skillModel.Id});
+
+                return learnedSkills.Any(learnedSkill =>
+                    alternateLearnedSkills.Contains(learnedSkill.Id));
+            });
         }
 
         public ISkillModel GetSkillModel(int id)

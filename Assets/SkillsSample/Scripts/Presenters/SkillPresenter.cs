@@ -59,7 +59,7 @@ namespace SkillsSample.Scripts.Presenters
 
         private void OnLearnButtonClicked()
         {
-            if (SkillsSchemeModel.CheckPossibilityOfLearning(_skill, _playerModel.GetLearnedSkills().ToList()))
+            if (SkillsSchemeModel.CheckPossibilityOfLearning(_skill, _playerModel.GetLearnedSkills()))
             {
                 if (_playerModel.LearnSkill(_skill))
                 {
@@ -71,9 +71,10 @@ namespace SkillsSample.Scripts.Presenters
 
         private void OnForgetButtonClicked()
         {
-            if (_skillsSchemeModel.CheckPossibilityOfForgetting(_skill, _playerModel.GetLearnedSkills()))
+            if (SkillsSchemeModel.CheckPossibilityOfForgetting(_skill, _playerModel.GetLearnedSkills()))
             {
                 _playerModel.ForgetSkill(_skill);
+                _isLearned = false;
                 UpdateUi();
             }
         }
