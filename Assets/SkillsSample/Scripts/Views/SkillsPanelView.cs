@@ -9,12 +9,14 @@ namespace SkillsSample.Scripts.Views
     {
         [SerializeField] private TextMeshProUGUI _points;
         [SerializeField] private Button _resetAllButton;
-
+        [SerializeField] private Button _earnButton;
         public event Action ResetAllButtonClicked;
+        public event Action EarnButtonClicked;
 
-        private void Start()
+        private void Awake()
         {
             _resetAllButton.onClick.AddListener(() => ResetAllButtonClicked?.Invoke());
+            _earnButton.onClick.AddListener(() => EarnButtonClicked?.Invoke());
         }
 
         public void UpdatePointsText(int pointsValue)
@@ -25,6 +27,7 @@ namespace SkillsSample.Scripts.Views
         private void OnDestroy()
         {
             _resetAllButton.onClick.RemoveAllListeners();
+            _earnButton.onClick.RemoveAllListeners();
         }
     }
 }

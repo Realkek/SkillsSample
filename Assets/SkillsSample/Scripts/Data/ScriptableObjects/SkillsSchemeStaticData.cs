@@ -9,8 +9,6 @@ namespace SkillsSample.Scripts.Data.ScriptableObjects
     {
         [SerializeField] private List<SkillStaticData> _skillsStaticData;
         
-        public List<SkillStaticData> SkillStaticData => _skillsStaticData;
-        
         public SkillStaticData GetSkillStaticDataById(int id)
         {
             return _skillsStaticData.First(skillStaticData => skillStaticData.CellId == id);

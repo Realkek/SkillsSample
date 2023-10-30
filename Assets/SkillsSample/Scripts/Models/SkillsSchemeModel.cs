@@ -20,7 +20,6 @@ namespace SkillsSample.Scripts.Models
                 learnedSkills.Any(ls => ls.Id == requiredNumber));
         }
 
-
         public static bool CheckPossibilityOfForgetting(ISkillModel skillModel, ICollection<ISkillModel> learnedSkills)
         {
             var dependentSkills = learnedSkills.Where(learnedSkill =>

@@ -8,6 +8,8 @@ namespace SkillsSample.Scripts.Presenters
         private readonly SkillsPanelView _skillsPanelView;
         private readonly PlayerSkillsModel _playerSkillsModel;
 
+        private const int TempEarnPointsCountByTestWorkSample = 1;
+
         public SkillsPanelPresenter(SkillsPanelView skillsPanelView, PlayerSkillsModel playerSkillsModel)
         {
             _skillsPanelView = skillsPanelView;
@@ -20,6 +22,14 @@ namespace SkillsSample.Scripts.Presenters
         {
             _playerSkillsModel.PointsChanged += PlayerSkillsModelOnPointsChanged;
             _skillsPanelView.ResetAllButtonClicked += SkillsPanelViewOnResetAllButtonClicked;
+            _skillsPanelView.EarnButtonClicked += SkillsPanelViewOnEarnButtonClicked;
+        }
+
+        private void Unsubscribe()
+        {
+            _playerSkillsModel.PointsChanged -= PlayerSkillsModelOnPointsChanged;
+            _skillsPanelView.ResetAllButtonClicked -= SkillsPanelViewOnResetAllButtonClicked;
+            _skillsPanelView.EarnButtonClicked -= SkillsPanelViewOnEarnButtonClicked;
         }
 
         private void SkillsPanelViewOnResetAllButtonClicked()
@@ -27,9 +37,9 @@ namespace SkillsSample.Scripts.Presenters
             _playerSkillsModel.ResetAllSkills();
         }
 
-        private void Unsubscribe()
+        private void SkillsPanelViewOnEarnButtonClicked()
         {
-            _playerSkillsModel.PointsChanged -= PlayerSkillsModelOnPointsChanged;
+            _playerSkillsModel.EarnPoints(TempEarnPointsCountByTestWorkSample);
         }
 
         private void PlayerSkillsModelOnPointsChanged(int points)

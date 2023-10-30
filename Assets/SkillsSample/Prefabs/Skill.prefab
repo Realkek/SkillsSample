@@ -668,5 +668,5 @@ MonoBehaviour:
   _name: {fileID: 2008585880209123429}
   _cost: {fileID: 3447082523719269410}
   _image: {fileID: 7869662879396253904}
-  learnButton: {fileID: 8314469962184872228}
-  forgetButton: {fileID: 5468417871234194447}
+  _learnButton: {fileID: 8314469962184872228}
+  _forgetButton: {fileID: 5468417871234194447}

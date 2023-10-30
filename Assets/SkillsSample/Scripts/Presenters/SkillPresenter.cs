@@ -1,4 +1,3 @@
-using System.Linq;
 using SkillsSample.Scripts.Data.ScriptableObjects;
 using SkillsSample.Scripts.Models;
 using SkillsSample.Scripts.Views;

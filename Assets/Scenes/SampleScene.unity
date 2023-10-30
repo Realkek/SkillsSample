@@ -1267,6 +1267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _points: {fileID: 1750446896}
   _resetAllButton: {fileID: 146483147}
+  _earnButton: {fileID: 1465233608}
 --- !u!1001 &1091212117
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -62,6 +62,12 @@ namespace SkillsSample.Scripts.Models
             AllSkillsAreReset?.Invoke();
         }
 
+        public void EarnPoints(int pointsCount)
+        {
+            SkillPoints += pointsCount;
+            PointsChanged?.Invoke(SkillPoints);
+        }
+
         private int GetCompensation()
         {
             return _learnedSkills.Where(learnedSkill => learnedSkill.Id != SkillBaseId)
