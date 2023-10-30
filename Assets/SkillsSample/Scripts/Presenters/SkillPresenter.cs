@@ -9,22 +9,20 @@ namespace SkillsSample.Scripts.Presenters
     {
         private readonly SkillsSchemeModel _skillsSchemeModel;
         private readonly SkillStaticData _skillStaticData;
-        private readonly PlayerModel _playerModel;
+        private readonly PlayerSkillsModel _playerSkillsModel;
         private readonly SkillCellView _cellView;
         private ISkillModel _skill;
-        private bool _isLearned;
-        private bool _isBaseSkill;
 
         public SkillPresenter(SkillsSchemeModel skillsSchemeModel, SkillCellView cellView,
-            SkillStaticData skillStaticData, PlayerModel playerModel)
+            SkillStaticData skillStaticData, PlayerSkillsModel playerSkillsModel)
         {
             _skillsSchemeModel = skillsSchemeModel;
             _cellView = cellView;
             _skillStaticData = skillStaticData;
-            _playerModel = playerModel;
+            _playerSkillsModel = playerSkillsModel;
             CreateSkillModel();
             ChooseBaseSkill();
-            UpdateUi();
+            UpdateUi(_skill);
             Subscribe();
         }
 
@@ -37,11 +35,9 @@ namespace SkillsSample.Scripts.Presenters
 
         private void ChooseBaseSkill()
         {
-            if (_playerModel.SkillBaseId == _skillStaticData.CellId)
+            if (_playerSkillsModel.SkillBaseId == _skillStaticData.CellId)
             {
-                _playerModel.LearnSkill(_skill);
-                _isLearned = true;
-                _isBaseSkill = true;
+                _playerSkillsModel.LearnSkill(_skill);
             }
         }
 
@@ -49,39 +45,46 @@ namespace SkillsSample.Scripts.Presenters
         {
             _cellView.LearnButtonClicked += OnLearnButtonClicked;
             _cellView.ForgetButtonClicked += OnForgetButtonClicked;
+            _playerSkillsModel.AllSkillsAreReset += PlayerSkillsModelOnAllSkillsAreReset;
+        }
+
+        private void PlayerSkillsModelOnAllSkillsAreReset()
+        {
+            UpdateUi(_skill);
         }
 
         private void Unsubscribe()
         {
             _cellView.LearnButtonClicked -= OnLearnButtonClicked;
             _cellView.ForgetButtonClicked -= OnForgetButtonClicked;
+            _playerSkillsModel.AllSkillsAreReset -= PlayerSkillsModelOnAllSkillsAreReset;
         }
 
         private void OnLearnButtonClicked()
         {
-            if (SkillsSchemeModel.CheckPossibilityOfLearning(_skill, _playerModel.GetLearnedSkills()))
+            if (SkillsSchemeModel.CheckPossibilityOfLearning(_skill, _playerSkillsModel.GetLearnedSkills()))
             {
-                if (_playerModel.LearnSkill(_skill))
+                if (_playerSkillsModel.LearnSkill(_skill))
                 {
-                    _isLearned = true;
-                    UpdateUi();
+                    UpdateUi(_skill);
                 }
             }
         }
 
         private void OnForgetButtonClicked()
         {
-            if (SkillsSchemeModel.CheckPossibilityOfForgetting(_skill, _playerModel.GetLearnedSkills()))
+            if (SkillsSchemeModel.CheckPossibilityOfForgetting(_skill, _playerSkillsModel.GetLearnedSkills()))
             {
-                _playerModel.ForgetSkill(_skill);
-                _isLearned = false;
-                UpdateUi();
+                _playerSkillsModel.ForgetSkill(_skill);
+                UpdateUi(_skill);
             }
         }
 
-        private void UpdateUi()
+        private void UpdateUi(ISkillModel skill)
         {
-            _cellView.UpdateSkillUI(_skillStaticData.SkillName, _skillStaticData.Cost, _isLearned, _isBaseSkill);
+            var isLearned = _playerSkillsModel.CheckSkillIsLearned(skill);
+            var isBaseSkill = _playerSkillsModel.CheckSkillIsBase(skill);
+            _cellView.UpdateSkillUI(_skillStaticData.SkillName, _skillStaticData.Cost, isLearned, isBaseSkill);
         }
     }
 }

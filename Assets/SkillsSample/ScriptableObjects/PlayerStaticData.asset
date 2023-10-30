@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dbeca1013ae15643a77ede1a9a4bd7d, type: 3}
   m_Name: PlayerStaticData
   m_EditorClassIdentifier: 
-  _pointsNumber: 100
+  _pointsNumber: 10
   _skillBaseId: 2

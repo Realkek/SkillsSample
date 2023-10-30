@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cellId: 2
   _skillName: Skill2
-  _cost: 2
+  _cost: 0
   _requiredSkillsNumbers: 

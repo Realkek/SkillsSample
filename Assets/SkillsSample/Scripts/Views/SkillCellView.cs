@@ -40,5 +40,11 @@ namespace SkillsSample.Scripts.Views
             learnButton.interactable = !isLearned;
             _image.color = isLearned ? Color.green : Color.blue;
         }
+
+        private void OnDestroy()
+        {
+            learnButton.onClick.RemoveAllListeners();
+            forgetButton.onClick.RemoveAllListeners();
+        }
     }
 }

@@ -7,7 +7,6 @@ namespace SkillsSample.Scripts.Models
     {
         public int Id { get; set; }
 
-        private const int NoCostNumber = 0;
         private readonly Dictionary<int, ISkillModel> _skills = new();
 
         public void AddSkill(ISkillModel skillModel)
@@ -35,12 +34,6 @@ namespace SkillsSample.Scripts.Models
                 return learnedSkills.Any(learnedSkill =>
                     alternateLearnedSkills.Contains(learnedSkill.Id));
             });
-        }
-
-        public ISkillModel GetSkillModel(int id)
-        {
-            _skills.TryGetValue(id, out var skillModel);
-            return skillModel;
         }
     }
 }
